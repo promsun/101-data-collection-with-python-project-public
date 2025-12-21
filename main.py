@@ -27,7 +27,7 @@ if os.path.exists(env_file):
     print(f"\n[INFO] Loaded environment variables from {env_file}")
 else:
     print(
-        f"\n[WARNING] Environment file '{env_file}' not found. Please create it with required credentials."
+        f"\n[WARNING] '{env_file}' file not found. Please create it with required credentials."
     )
     print("[WARNING] Proceeding with system environment variables...")
 
