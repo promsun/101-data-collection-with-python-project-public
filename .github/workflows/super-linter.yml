@@ -1,0 +1,66 @@
+# This workflow executes several linters on changed files based on languages used in your code base whenever
+# you push a code or open a pull request.
+#
+# You can adjust the behavior by modifying this file.
+# For more information, see:
+# https://github.com/github/super-linter
+name: Lint Code Base
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+# Set default permissions to read-all
+permissions: read-all
+
+jobs:
+  run-lint:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+      # To report GitHub Actions status checks
+      statuses: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Full git history is needed to get a proper list of changed files within `super-linter`
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Super-linter
+        uses: super-linter/super-linter@ffde3b2b33b745cb612d787f669ef9442b1339a6 # v8.1.0
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: 'main'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # Set custom path for linter configuration files from .github/linters to root directory
+          LINTER_RULES_PATH: /
+
+          # Disable prettier checks to avoid conflicts with existing formatting
+          VALIDATE_CSS_PRETTIER: false
+          VALIDATE_GRAPHQL_PRETTIER: false
+          VALIDATE_HTML_PRETTIER: false
+          VALIDATE_JAVASCRIPT_PRETTIER: false
+          VALIDATE_JSON_PRETTIER: false
+          VALIDATE_JSONC_PRETTIER: false
+          VALIDATE_JSX_PRETTIER: false
+          VALIDATE_MARKDOWN_PRETTIER: false
+          VALIDATE_TYPESCRIPT_PRETTIER: false
+          VALIDATE_VUE_PRETTIER: false
+          VALIDATE_YAML_PRETTIER: false
+
+          # Disable natural language checks to avoid conflicts with existing text
+          VALIDATE_NATURAL_LANGUAGE: false
+
+          # Disable markdown linting to avoid conflicts with existing formatting
+          VALIDATE_MARKDOWN: false
+
+          # Disable jscpd checks to avoid conflicts with existing code structure
+          VALIDATE_JSCPD: false
