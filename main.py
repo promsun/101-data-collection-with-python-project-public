@@ -394,7 +394,7 @@ def main():
 
     try:
         # Step 1: Extract from PostgreSQL
-        # extract_postgres_data()
+        extract_postgres_data()
 
         # Step 2: Extract from API
         extract_api_data()
