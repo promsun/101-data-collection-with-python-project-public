@@ -51,16 +51,18 @@ graph LR
 ├── .gitignore              # Git ignore patterns
 ├── data/                   # Data directory (gitignored)
 │   ├── raw/                # Raw data partitioned by date
-│   │   └── YYYY-MM-DD/
-│   │       ├── products.parquet
-│   │       ├── customers.parquet
-│   │       ├── orders.parquet
-│   │       ├── order_items.parquet
-│   │       └── conversion_rate.parquet
+│   │   ├── YYYY-MM-DD/
+│   │   │    ├── products.parquet
+│   │   │    ├── customers.parquet
+│   │   │    ├── orders.parquet
+│   │   │    ├── order_items.parquet
+│   │   │    └── conversion_rate.parquet
+│   │   └── sample/         # Sample data for testing
 │   └── processed/          # Processed data partitioned by date
-│       └── YYYY-MM-DD/
-│           ├── final_output.parquet
-│           └── final_output.csv
+│       ├── YYYY-MM-DD/
+│       │    ├── final_output.parquet
+│       │    └── final_output.csv
+│       └── sample/         # Sample data for testing
 └── README.md               # This file
 ```
 
