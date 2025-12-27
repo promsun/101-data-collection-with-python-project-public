@@ -10,8 +10,10 @@
 
 data/raw/*
 data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
+!data/raw/sample/
+!data/processed/sample/
+!data/raw/sample/**
+!data/processed/sample/**
 
 #####################################
 # Reference from: https://github.com/github/gitignore/blob/main/Python.gitignore
