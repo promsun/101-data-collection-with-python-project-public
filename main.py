@@ -131,8 +131,8 @@ def extract_postgres_data():
                 print(f"[INFO] Reading table: {table_key}")
                 df = pd.read_sql(query, connection)
 
-                # Save raw data as parquet
-                df.to_parquet(output_path, index=False)
+                # Save raw data as parquet (with timestamp coercion for compatibility)
+                df.to_parquet(output_path, index=False, coerce_timestamps="ms")
 
                 tables_data[table_key] = df
                 print(f"[INFO]   -> Saved {len(df)} rows to {output_path}")
@@ -199,9 +199,9 @@ def extract_api_data():
 
     print(f"[INFO] After filling missing dates: {len(conversion_rate)} total records")
 
-    # Save raw data as parquet
+    # Save raw data as parquet (with timestamp coercion for compatibility)
     output_path = RAW_FILES["conversion_rate"]
-    conversion_rate.to_parquet(output_path, index=False)
+    conversion_rate.to_parquet(output_path, index=False, coerce_timestamps="ms")
     print(f"[INFO]   -> Saved to: {output_path}")
     print("[SUCCESS] API data extracted successfully")
 
@@ -346,10 +346,10 @@ def load_processed_data(final_df):
     print("  📝 STEP 4: Saving processed data")
     print("=" * 70)
 
-    # Save as parquet
+    # Save as parquet (with timestamp coercion for compatibility)
     print("[INFO] Saving parquet file...")
     parquet_path = PROCESSED_FILES["final_output"]
-    final_df.to_parquet(parquet_path, index=False)
+    final_df.to_parquet(parquet_path, index=False, coerce_timestamps="ms")
     print(f"[INFO]   -> Saved to: {parquet_path}")
 
     # Save as CSV
